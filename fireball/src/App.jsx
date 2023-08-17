@@ -1,28 +1,22 @@
-import { useEffect, useState } from 'react';
-import './App.css'
-import DataTable from './components/table/Table'
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import axios from 'axios';
 
-function App() {
-  const [data, setData] = useState(null)
+import './App.css'
+import DataTable from './components/table/Table'
 
-  useEffect(() => {
-    const apiUrl = "https://data.nasa.gov/resource/gh4g-9sfh.json"
-    axios.get(apiUrl)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data: ", error);
-      });
-  }, []);
-  
+const queryClient = new QueryClient()
+
+function App() {
   return (
-    <>
-    {data==null? <p>Loading...</p> : <DataTable  data={data}/>}
-    
-    </>
+    <QueryClientProvider client={queryClient}>
+      {/* new base component */}
+
+    </QueryClientProvider>
   )
 }
 
-export default App
+export default App;
