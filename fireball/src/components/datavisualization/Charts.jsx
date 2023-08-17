@@ -1,5 +1,7 @@
 import { useReducer, useState } from 'react'
 import PieChart from './PieChart'
+import BarChart from './BarChart';
+import ScatterPlot from './ScatterPlot';
 
 /**
  * reducer state:
@@ -10,35 +12,29 @@ import PieChart from './PieChart'
 
 export default function Charts({ meteorData }) {
 
-  const initialState = {
-    visibleChart: 'pie',
-    currentFilter: pieMassFilter,
+  const [showCharts, setShowCharts] = useState({
+    pie: true,
+  })
+
+  const handleShowChart = (type) => {
+    let newState = {}
+    newState[type] = true
+
+    setShowCharts(newState)
   }
-
-  const pieMassFilter = () => {
-
-  }
-
-  // dispatch({type: 'currentFilter', payLoad: {}})
-
-  function reducer(action) {
-
-    switch (action) {
-      case '':
-
-        break;
-
-    }
-  }
-
-  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <div>
-      <button>Pie Chart</button>
-      <button>Bar Chart</button>
-      <PieChart massData={massData} locationData={locationData} />
-      <BarChart massData={massData} />
+
+      <div>
+        <button onClick={() => handleShowChart('pie')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Pie Chart</button>
+        <button onClick={() => handleShowChart('bar')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bar Chart</button>
+        <button onClick={() => handleShowChart('scatter')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Scatter Plot</button>
+      </div>
+
+      {showCharts.pie && <PieChart meteorData={meteorData} />}
+      {showCharts.bar && <BarChart />}
+      {showCharts.scatter && <ScatterPlot />}
     </div>
   )
 }

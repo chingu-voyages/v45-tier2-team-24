@@ -69,8 +69,7 @@ export default function DataVisualization() {
 
   const getMeteorData = async () => {
     const res = await axios.get(meteorAPI)
-    const data = await res.json()
-    await setMeteorData(data)
+    setMeteorData(res.data)
   }
 
   useEffect(() => {
