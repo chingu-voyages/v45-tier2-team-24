@@ -77,11 +77,11 @@ export default function DataVisualization() {
   }, [])
 
   return (
-    <div>
+    <div className="w-full h-screen">
 
       {
         meteorData === null ? <Loading /> :
-          <div>
+          <div className="w-full">
             <Charts meteorData={meteorData} />
           </div>
       }

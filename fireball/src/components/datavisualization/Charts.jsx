@@ -1,7 +1,8 @@
-import { useReducer, useState } from 'react'
+import { useState } from 'react'
 import PieChart from './PieChart'
-import BarChart from './BarChart';
-import ScatterPlot from './ScatterPlot';
+import BarChart from './ScatterChart';
+import BubbleChart from './BubbleChart';
+import ScatterChart from './ScatterChart';
 
 /**
  * reducer state:
@@ -24,17 +25,17 @@ export default function Charts({ meteorData }) {
   }
 
   return (
-    <div>
+    <div className='flex flex-col items-center justify-center w-full'>
 
-      <div>
+      <div className='flex'>
         <button onClick={() => handleShowChart('pie')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Pie Chart</button>
-        <button onClick={() => handleShowChart('bar')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bar Chart</button>
-        <button onClick={() => handleShowChart('scatter')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Scatter Plot</button>
+        <button onClick={() => handleShowChart('scatter')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Scatter Chart</button>
+        <button onClick={() => handleShowChart('bubble')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bubble</button>
       </div>
 
       {showCharts.pie && <PieChart meteorData={meteorData} />}
-      {showCharts.bar && <BarChart />}
-      {showCharts.scatter && <ScatterPlot />}
+      {showCharts.scatter && <ScatterChart meteorData={meteorData} />}
+      {showCharts.bubble && <BubbleChart meteorData={meteorData} />}
     </div>
   )
 }
