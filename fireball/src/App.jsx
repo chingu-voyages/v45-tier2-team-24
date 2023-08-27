@@ -24,7 +24,7 @@ function App() {
   
   return (
     <>
-    {sortedData == null? <p>Loading...</p> : <div className="p-4">
+    {sortedData == null? <p>Loading...</p> : <div className="p-4 phone:w-full tablet:w-[18rem] absolute phone:bottom-0 tablet:top-0 tablet:left-0 desktop:top-[10%] desktop:left-[10%]"  >
       {sortedData.map((item, index) => (
         <DataTable key={index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
       ))}
