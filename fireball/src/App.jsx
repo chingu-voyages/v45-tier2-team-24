@@ -3,7 +3,7 @@ import Team from "./components/teamabout/Team";
 
 function App() {
   return (
-    <div className="bg-slate-500">
+    <div>
       <Team />
     </div>
   );
