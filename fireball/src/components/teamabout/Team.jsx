@@ -23,15 +23,15 @@ export default function Team() {
   return (
     <>
       <div className="star"></div>
-      <div className="meteor-1"></div>
-      <div className="meteor-2"></div>
-      <div className="meteor-5"></div>
-      <div className="meteor-10"></div>
-      <div className="container static h-screen flex ">
+      <div className="meteor-1 hidden md:block "></div>
+      <div className="meteor-2 hidden md:block"></div>
+      <div className="meteor-5 hidden md:block"></div>
+      <div className="meteor-10 hidden md:block"></div>
+      <div className="relative h-screen flex justify-center items-center">
         <img
           src="src\components\teamabout\images\Moon.png"
           alt=""
-          className="fixed w-screen place-self-center"
+          className="absolute sm:max-w-screen-sm md:max-w-screen-lg lg:max-w-screen-xl xl:max-w-screen-2xl max-w-2xl"
         />
         <HtmlTooltip
           title={
@@ -62,12 +62,12 @@ export default function Team() {
               </a>
             </React.Fragment>
           }
-          placement="right"
+          placement="right-start"
         >
           <img
             src="src\components\teamabout\images\Rachel.png"
             alt=""
-            className="absolute left-80 top-80 z-2 cursor-pointer"
+            className="absolute left-[10%] top-[35vh] z-2 cursor-pointer"
           />
         </HtmlTooltip>
 
@@ -80,22 +80,16 @@ export default function Team() {
                 Developer
               </Typography>
               <hr />
-              ???
+              Seattle, WA
               <br />
               Something will go here
               <br />
               Social Links:{" "}
-              <a href="#" target="_blank">
+              <a href="https://github.com/limyod" target="_blank">
                 <GitHubIcon />
               </a>
-              <a href="#" target="_blank">
+              <a href="https://www.linkedin.com/in/yodae-lim/" target="_blank">
                 <LinkedInIcon />
-              </a>
-              <a href="#" target="_blank">
-                <TwitterIcon />
-              </a>
-              <a href="#" target="_blank">
-                <ComputerIcon />
               </a>
             </React.Fragment>
           }
@@ -104,7 +98,7 @@ export default function Team() {
           <img
             src="src\components\teamabout\images\Yodae.png"
             alt=""
-            className="absolute right-80 top-10 z-2 cursor-pointer"
+            className="absolute left-[25%] top-[60vh] z-2 cursor-pointer"
           />
         </HtmlTooltip>
 
@@ -136,12 +130,12 @@ export default function Team() {
               </a>
             </React.Fragment>
           }
-          placement="left-start"
+          placement="bottom"
         >
           <img
             src="src\components\teamabout\images\CJ.png"
             alt=""
-            className="absolute right-80 bottom-20 z-2 cursor-pointer"
+            className="absolute top-[15vh] left-[30%] z-2 cursor-pointer"
           />
         </HtmlTooltip>
 
@@ -178,12 +172,12 @@ export default function Team() {
               </a>
             </React.Fragment>
           }
-          placement="left-start"
+          placement="right"
         >
           <img
             src="src\components\teamabout\images\Carlos.png"
             alt=""
-            className="absolute right-40 bottom-80 z-2 cursor-pointer"
+            className="absolute right-[20%] top-[58vh] z-2 cursor-pointer"
           />
         </HtmlTooltip>
 
@@ -215,15 +209,15 @@ export default function Team() {
               </a>
             </React.Fragment>
           }
-          placement="left"
+          placement="right"
         >
           <img
             src="src\components\teamabout\images\Eric.png"
             alt=""
-            className="absolute left-40 top-20 z-2 cursor-pointer"
+            className="absolute top-[35vh] right-[10%] z-2 cursor-pointer"
           />
         </HtmlTooltip>
-        <HtmlTooltip
+        {/* <HtmlTooltip
           title={
             <React.Fragment>
               <Typography color="inherit">
@@ -256,9 +250,9 @@ export default function Team() {
           <img
             src="src\components\teamabout\images\Lindsey.png"
             alt=""
-            className="absolute left-40 bottom-40 z-2 cursor-pointer"
+            className="absolute top-3/4 end-1/2 z-2 cursor-pointer"
           />
-        </HtmlTooltip>
+        </HtmlTooltip> */}
       </div>
     </>
   );
