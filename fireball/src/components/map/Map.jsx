@@ -12,7 +12,8 @@ export default function Map({data}) {
   return (
     <>
       <MapContainer
-        style={{ height: "450px", width: "100%" }}
+        //style={{ height: "450px", width: "100%" }}
+        className="w-full h-60"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}

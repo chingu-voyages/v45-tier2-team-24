@@ -2,6 +2,7 @@ import './App.css'
 import Map from './components/map/Map'
 import DataTable from './components/table/Table'
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [data, setData] = useState(null);
@@ -36,14 +37,27 @@ function App() {
 
   return (
     <>
-      
-    {data==null? <p>Loading...</p> : 
-    <>
-      <Map data={data}/>
-      <DataTable  data={data}/>
-    </>
-    }
-    
+      {data == null ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <Map data={data} />
+          {sortedData == null ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="p-4 phone:w-full tablet:w-[18rem] absolute phone:bottom-0 tablet:top-0 tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+              {sortedData.map((item, index) => (
+                <DataTable
+                  key={index}
+                  data={item}
+                  isOpen={openDropdown}
+                  setIsOpen={setOpenDropdown}
+                />
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </>
   );
 }
