@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from "react-le
 //import data from './data';
 import LocationMarker from './LocationMarker';
 import MeteoriteMarker from "./MeteoriteMarker";
+import "./map.css"
 
 
 export default function Map({data}) {
@@ -13,7 +14,7 @@ export default function Map({data}) {
     <>
       <MapContainer
         //style={{ height: "450px", width: "100%" }}
-        className="w-full h-60"
+        className="w-full h-screen"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}

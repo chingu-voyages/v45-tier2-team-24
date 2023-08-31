@@ -1,6 +1,7 @@
 import './App.css'
 import Map from './components/map/Map'
 import DataTable from './components/table/Table'
+import SliderFilter from './components/slider_filter/slider';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -32,32 +33,20 @@ function App() {
 
     const newFilteredData = filterRanges(newValue[0], newValue[1], data);
     setFilteredRange(newFilteredData);
-    console.log(filteredRange)
   };
 
   return (
     <>
-      {data == null ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <Map data={data} />
-          {sortedData == null ? (
-            <p>Loading...</p>
-          ) : (
-            <div className="p-4 phone:w-full tablet:w-[18rem] absolute phone:bottom-0 tablet:top-0 tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-              {sortedData.map((item, index) => (
-                <DataTable
-                  key={index}
-                  data={item}
-                  isOpen={openDropdown}
-                  setIsOpen={setOpenDropdown}
-                />
-              ))}
-            </div>
-          )}
-        </>
-      )}
+      {sortedData? 
+          <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+          <SliderFilter handleChange={handleChange} value={value} />
+          {sortedData.map((item, index) => (
+            <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
+          ))}
+        </div>
+      : <p>Loading...</p>}
+      {data == null? ( <p>Loading...</p> ) 
+        : ( <Map data={data} />)}
     </>
   );
 }
