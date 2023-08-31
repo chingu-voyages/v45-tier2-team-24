@@ -1,5 +1,7 @@
 import './App.css'
-
+import Map from './components/map/Map'
+import DataTable from './components/table/Table'
+import axios from 'axios';
 
 function App() {
   const [data, setData] = useState(null);
@@ -34,7 +36,14 @@ function App() {
 
   return (
     <>
-
+      
+    {data==null? <p>Loading...</p> : 
+    <>
+      <Map data={data}/>
+      <DataTable  data={data}/>
+    </>
+    }
+    
     </>
   );
 }
