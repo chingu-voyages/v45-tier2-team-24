@@ -2,6 +2,7 @@ import './App.css'
 import Map from './components/map/Map'
 import DataTable from './components/table/Table'
 import SliderFilter from './components/slider_filter/slider';
+import { filterRanges } from './utils/helpers/filterBetweenTwoRanges';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
