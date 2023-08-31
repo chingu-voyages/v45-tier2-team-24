@@ -8,10 +8,10 @@ function DataTable({data, isOpen, setIsOpen}) {
         onClick={() => setIsOpen(isOpen === data.id ? null : data.id)}
         className="w-full bg-slate-700 text-white p-2"
       >
-        {data.name} - Mass: {data.mass} kg
+        {data.name} | Mass: {data.mass} kg
       </button>
       {isOpen === data.id && (
-        <div className="w-full bg-gray-100 p-4">
+        <div className="w-full bg-gray-100 bg-slate-50 p-4">
           <p><strong>ID:</strong> {data.id}</p>
           <p><strong>Name Type:</strong> {data.nametype}</p>
           <p><strong>Mass:</strong> {data.mass} kg</p>
