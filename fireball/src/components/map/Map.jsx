@@ -1,17 +1,16 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from "react-leaflet";
-import data from './data';
+//import data from './data';
 import LocationMarker from './LocationMarker';
 import MeteoriteMarker from "./MeteoriteMarker";
 
 
-export default function Map() {
+export default function Map({data}) {
   const myData = data.filter((element)=> element.reclat && element.reclong);
-  console.log(myData);
+  //console.log(myData);
   return (
     <>
-      <h1>My map</h1>
       <MapContainer
         style={{ height: "450px", width: "100%" }}
         center={[51.505, -0.09]}
@@ -24,6 +23,7 @@ export default function Map() {
         />
         {myData.map((item) =>
           <MeteoriteMarker
+            key={item.id}
             mass={item.mass}
             name={item.name}
             id={item.id}

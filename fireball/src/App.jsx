@@ -20,8 +20,13 @@ function App() {
   
   return (
     <>
-      <Map/>
-    {data==null? <p>Loading...</p> : <DataTable  data={data}/>}
+      
+    {data==null? <p>Loading...</p> : 
+    <>
+      <Map data={data}/>
+      <DataTable  data={data}/>
+    </>
+    }
     
     </>
   )
