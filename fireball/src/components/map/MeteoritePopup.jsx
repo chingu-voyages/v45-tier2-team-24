@@ -10,7 +10,7 @@ export default function MeteoritePopup({id, name, mass, recclass, year}) {
         <p>Mass: {mass}</p>
         <p>Class: {recclass}</p>
         <p>Year: {year}</p>
-        <button class="border-solid border-2 rounded-md p-2"
+        <button className="border-solid border-2 rounded-md p-2"
           onClick=
           {() => {
             alert(`meteor id is: ${id}`);
