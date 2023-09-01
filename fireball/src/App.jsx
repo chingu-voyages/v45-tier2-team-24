@@ -47,7 +47,7 @@ function App() {
         </div>
       : <p>Loading...</p>}
       {data == null? ( <p>Loading...</p> ) 
-        : ( <Map data={data} />)}
+        : ( <Map data={data} filteredRange={filteredRange}/>)}
     </>
   );
 }
