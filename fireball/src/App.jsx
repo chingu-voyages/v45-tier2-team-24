@@ -1,5 +1,7 @@
 import './App.css'
-
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import DataVisualization from './components/datavisualization/DataVisualization';
 
 function App() {
   const [data, setData] = useState(null);
@@ -34,7 +36,7 @@ function App() {
 
   return (
     <>
-
+      <DataVisualization />
     </>
   );
 }
