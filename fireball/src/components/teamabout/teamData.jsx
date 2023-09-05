@@ -14,7 +14,7 @@ export default [
     linkedIn: "https://www.linkedin.com/in/rachelkvanhorn/",
     twitter: "",
     portfolio: "https://rvanhorn.dev",
-    placement: "right",
+    placement: "top",
     imgSrc: Rachel,
     imgAlt: "Rachel as an astronaut",
     imgClassName:
@@ -33,7 +33,7 @@ export default [
     imgSrc: Yodae,
     imgAlt: "Yodae as an astronaut",
     imgClassName:
-      "absolute left-[25%] top-[75vh] z-2 cursor-pointer h-40 sm:h-52",
+      "absolute left-[25%] top-[67vh] z-2 cursor-pointer h-40 sm:h-52 ",
   },
   {
     name: "CJ",
@@ -44,7 +44,7 @@ export default [
     linkedIn: "https://www.linkedin.com/in/conwaycj/",
     twitter: "",
     portfolio: "https://christopherjconway.netlify.app/",
-    placement: "right",
+    placement: "bottom",
     imgSrc: CJ,
     imgAlt: "CJ as an astronaut",
     imgClassName:
@@ -59,7 +59,7 @@ export default [
     linkedIn: "https://www.linkedin.com/in/carlos-luevano/",
     twitter: "https://twitter.com/clue355",
     portfolio: "https://carlosluevano.netlify.app",
-    placement: "right",
+    placement: "top",
     imgSrc: Carlos,
     imgAlt: "Carlos as an astronaut",
     imgClassName:
@@ -78,6 +78,6 @@ export default [
     imgSrc: Eric,
     imgAlt: "Eric as an astronaut",
     imgClassName:
-      "absolute top-[75vh] right-[20%] z-2 cursor-pointer h-40 sm:h-52",
+      "absolute top-[67vh] right-[20%] z-2 cursor-pointer h-40 sm:h-52",
   },
 ];
