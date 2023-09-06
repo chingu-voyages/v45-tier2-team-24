@@ -2,7 +2,6 @@ import Rachel from "./images/Rachel.png";
 import Yodae from "./images/Yodae.png";
 import CJ from "./images/CJ.png";
 import Carlos from "./images/Carlos.png";
-import Eric from "./images/Eric.png";
 
 export default [
   {
@@ -18,7 +17,7 @@ export default [
     imgSrc: Rachel,
     imgAlt: "Rachel as an astronaut",
     imgClassName:
-      "absolute left-[10%] top-[55vh] z-2 cursor-pointer h-40 sm:h-52",
+      "absolute left-[10%] top-[58vh] z-2 cursor-pointer h-36 sm:h-52",
   },
   {
     name: "Yodae",
@@ -33,7 +32,7 @@ export default [
     imgSrc: Yodae,
     imgAlt: "Yodae as an astronaut",
     imgClassName:
-      "absolute left-[25%] top-[67vh] z-2 cursor-pointer h-40 sm:h-52 ",
+      "absolute left-[30%] top-[65vh] z-2 cursor-pointer h-36 sm:h-52 ",
   },
   {
     name: "CJ",
@@ -48,7 +47,7 @@ export default [
     imgSrc: CJ,
     imgAlt: "CJ as an astronaut",
     imgClassName:
-      "absolute top-[40vh] left-[40%] z-2 cursor-pointer h-40 sm:h-52",
+      "absolute top-[55vh] right-[30%] z-2 cursor-pointer h-36 sm:h-52",
   },
   {
     name: "Carlos Luevano",
@@ -63,21 +62,6 @@ export default [
     imgSrc: Carlos,
     imgAlt: "Carlos as an astronaut",
     imgClassName:
-      "absolute right-[10%] top-[55vh] z-2 cursor-pointer h-40 sm:h-52",
-  },
-  {
-    name: "Eric",
-    title: "Developer",
-    location: "???",
-    bio: "Something will go here",
-    github: "",
-    linkedIn: "",
-    twitter: "",
-    portfolio: "",
-    placement: "left",
-    imgSrc: Eric,
-    imgAlt: "Eric as an astronaut",
-    imgClassName:
-      "absolute top-[67vh] right-[20%] z-2 cursor-pointer h-40 sm:h-52",
+      "absolute right-[10%] top-[65vh] z-2 cursor-pointer h-36 sm:h-52",
   },
 ];
