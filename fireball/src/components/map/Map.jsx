@@ -7,15 +7,16 @@ import MeteoriteMarker from "./MeteoriteMarker";
 import "./map.css"
 
 
-export default function Map({data, filteredRange}) {
+export default function Map({ data, filteredRange, updateSelectedMeteorite }) {
   const validData = data || [];
   const validFilteredRange = filteredRange || [];
 
-  const mapData = validFilteredRange.length > 0 ? validFilteredRange : validData;
+  const mapData =
+    validFilteredRange.length > 0 ? validFilteredRange : validData;
 
-  const validMapData = mapData.filter(item => item.reclat && item.reclong);
+  const validMapData = mapData.filter((item) => item.reclat && item.reclong);
 
-  // console.log(validMapData); 
+  // console.log(validMapData);
   return (
     <>
       <MapContainer
@@ -29,8 +30,9 @@ export default function Map({data, filteredRange}) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {validMapData.map((item) =>
+        {validMapData.map((item) => (
           <MeteoriteMarker
+            updateSelectedMeteorite={updateSelectedMeteorite}
             key={item.id}
             mass={item.mass}
             name={item.name}
@@ -40,7 +42,7 @@ export default function Map({data, filteredRange}) {
             recclass={item.recclass}
             year={item.year}
           />
-        )}
+        ))}
         <LocationMarker />
       </MapContainer>
     </>
