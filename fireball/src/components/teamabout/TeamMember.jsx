@@ -9,6 +9,8 @@ import ComputerIcon from "@mui/icons-material/Computer";
 
 export default function TeamMember({ memberData }) {
   //console.log(memberData);
+
+  /** This is all for the ToolTip, came directly from MaterialUI*/
   const HtmlTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -21,6 +23,9 @@ export default function TeamMember({ memberData }) {
     },
   }));
   return (
+    /**memberData object is used to fill in all fields for each astronaut
+     * and their tooltip.
+     */
     <HtmlTooltip
       title={
         <React.Fragment>

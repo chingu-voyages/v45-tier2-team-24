@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
 }
-
+/* Background videos */
 .backgroundVideo {
   display: block;
   position: fixed;
@@ -17,6 +17,7 @@ body {
   width: 100vw;
 }
 
+/* Moon background */
 .moonWrapper {
   background-image: url("./images/moon5.png");
   background-repeat: no-repeat;
@@ -27,6 +28,8 @@ body {
   height: 100vh;
 }
 
+/* Media queries changes moon position based on screen size and 
+which background video plays based on screen size */
 @media (max-width: 950px) {
   .moonWrapper {
     background-position-y: 50vh;
@@ -37,11 +40,6 @@ body {
     background-position-y: 67vh;
   }
 }
-/* @media (max-width: 300px) {
-  .moonWrapper {
-    background-position-y: 67vh;
-  }
-} */
 
 @media (max-width: 950px) {
   .backgroundVideo {

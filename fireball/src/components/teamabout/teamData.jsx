@@ -23,7 +23,7 @@ export default [
     name: "Yodae",
     title: "Developer",
     location: "Seattle, WA",
-    bio: "Something will go here.",
+    bio: "",
     github: "https://github.com/limyod",
     linkedIn: "https://www.linkedin.com/in/yodae-lim/",
     twitter: "",
