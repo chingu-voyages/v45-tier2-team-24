@@ -15,6 +15,9 @@ function App() {
   const [filteredRange, setFilteredRange] = useState(null);
 
   const [value, setValue] = useState([992.5, 100000]);
+  const [selectedMeteorite, setSelectedMeteorite] = useState(null);
+
+
 
   useEffect(() => {
     const apiUrl = "https://data.nasa.gov/resource/gh4g-9sfh.json";
@@ -35,9 +38,9 @@ function App() {
     const newFilteredData = filterRanges(newValue[0], newValue[1], data);
     setFilteredRange(newFilteredData);
   };
-
   return (
     <>
+      {selectedMeteorite ? <h1>We have currently selected {selectedMeteorite}</h1> : <h1>We currently have no selected Meteorite</h1>}
       {sortedData? 
           <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
           <SliderFilter handleChange={handleChange} value={value} />
@@ -47,7 +50,7 @@ function App() {
         </div>
       : <p>Loading...</p>}
       {data == null? ( <p>Loading...</p> ) 
-        : ( <Map data={data} filteredRange={filteredRange}/>)}
+        : ( <Map data={data} updateSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange}/>)}
     </>
   );
 }
