@@ -2,6 +2,7 @@ import './App.css'
 import Map from './components/map/Map'
 import DataTable from './components/table/Table'
 import SliderFilter from './components/slider_filter/slider';
+import Team from "./components/teamabout/Team";
 import { filterRanges } from './utils/helpers/filterBetweenTwoRanges';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <Team />
       {sortedData? 
           <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
           <SliderFilter handleChange={handleChange} value={value} />
