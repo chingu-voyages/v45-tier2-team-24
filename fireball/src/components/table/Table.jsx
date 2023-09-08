@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { selectClasses } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-function DataTable({data, isOpen, setIsOpen}) {
-
+function DataTable({data, isOpen, setIsOpen, selectedMeteor}) {
+  useEffect(() => {
+    if (selectedMeteor != null) {
+      setIsOpen(selectedMeteor.id);
+    }
+  }, [selectedMeteor, setIsOpen]);
   return (
     <div className="w-full mb-1">
       <button
         onClick={() => setIsOpen(isOpen === data.id ? null : data.id)}
-        className="w-full bg-slate-700 text-white p-2"
+        className="w-full bg-slate-700 text-white p-2 rounded-t-md hover:bg-stone-900 hover:text-cyan-300"
       >
         {data.name} | Mass: {data.mass} kg
       </button>
       {isOpen === data.id && (
-        <div className="w-full bg-gray-100 bg-slate-50 p-4">
+        <div className="w-full bg-gray-100 bg-slate-50 p-4 ">
           <p><strong>ID:</strong> {data.id}</p>
           <p><strong>Name Type:</strong> {data.nametype}</p>
           <p><strong>Mass:</strong> {data.mass} kg</p>
