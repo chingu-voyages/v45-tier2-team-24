@@ -3,7 +3,9 @@ import { Popup, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MeteoritePopup from "./MeteoritePopup";
 
+
 export default function MeteoriteMarker({
+  setSelectedMeteorite,
   id,
   reclat,
   reclong,
@@ -12,27 +14,39 @@ export default function MeteoriteMarker({
   recclass,
   year
 }) {
+
+
   return mass ? (
     <Circle
       key={id}
       center={[reclat, reclong]}
       opacity={0.5}
       radius={10000 * Math.log(parseInt(mass))}
-    >
-      <Popup>
-        <MeteoritePopup
-          id={id}
-          name={name}
-          mass={mass}
-          recclass={recclass}
-          year={year}
+      eventHandlers={{
+        click: (e) => {
+          e.originalEvent.stopPropagation(); 
+          setSelectedMeteorite(id);
+        },
+        mouseover: (e) => {
+          e.target.setRadius(e.target._mRadius * 1.1);
+          e.target.setStyle({ color: "#6633cc" });
+          //purple: #6633cc
+          //orange: #ff6600
+          //green: #00ff00
+        },
 
-        />
-      </Popup>
+        mouseout: (e) => {
+          e.target.setRadius(e.target._mRadius / 1.1);
+          e.target.setStyle({ color: '#3388ff' });// our original color
+        },
+      }}
+    >
     </Circle>
   ) : (
     <Circle key={id} center={[reclat, reclong]} opacity={0.5} color="#FF5733">
       <Popup>{name}</Popup>
     </Circle>
+    
   );
+  
 }
