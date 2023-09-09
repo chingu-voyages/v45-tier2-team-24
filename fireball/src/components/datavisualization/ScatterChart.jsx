@@ -16,18 +16,15 @@ import { Typography } from '@mui/material';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-
 export default function ScatterChart({ meteorData }) {
 
   const options = {
     scales: {
       y: {
         type: 'linear',
-
       },
       x: {
         type: 'linear',
-        // beginAtZero: false,
       }
     },
 
@@ -36,14 +33,13 @@ export default function ScatterChart({ meteorData }) {
   const [x, setX] = useState(1800)
   const [y, setY] = useState(1000000)
 
-  const meteorSightingsByYear = (meteorData, filterOption) => {
+  const meteorSightingsByYear = (meteorData) => {
 
 
     let newData = meteorData.map(meteor => {
       return {
         x: new Date(meteor.year).getFullYear(),
         y: Number(meteor.mass),
-
       }
     })
 
@@ -73,11 +69,10 @@ export default function ScatterChart({ meteorData }) {
 
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center w-16'>
 
 
       <span className=' flex h-72 items-center'>
-        {/* <Typography>Meteor Size</Typography> */}
         <Slider
           orientation="vertical"
           value={y}
@@ -89,7 +84,6 @@ export default function ScatterChart({ meteorData }) {
           onChange={(e) => setY(e.target.value)}
           onKeyDown={preventHorizontalKeyboardNavigation}
           sx={{ height: 240 }}
-
         />
         <Scatter redraw={false} options={options} data={data} />
       </span>
