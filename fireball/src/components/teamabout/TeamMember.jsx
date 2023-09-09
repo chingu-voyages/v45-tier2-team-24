@@ -12,7 +12,7 @@ export default function TeamMember({ memberData }) {
 
   /** This is all for the ToolTip, came directly from MaterialUI*/
   const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
+    <Tooltip {...props} classes={{ popper: className }} enterTouchDelay={0} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: "#f5f5f9",
