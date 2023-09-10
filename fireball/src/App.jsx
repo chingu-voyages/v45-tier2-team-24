@@ -4,9 +4,10 @@ import DataTable from './components/table/Table'
 import SliderFilter from './components/slider_filter/slider';
 import Team from "./components/teamabout/Team";
 import { filterRanges } from './utils/helpers/filterBetweenTwoRanges';
+import { filterSelected } from './utils/helpers/filterSelectedData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { filterSelected } from './utils/helpers/filterSelectedData';
+import DataVisualization from './components/datavisualization/DataVisualization';
 
 function App() {
   const [data, setData] = useState(null);
@@ -67,6 +68,7 @@ function App() {
         : ( <Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange}/> )}
         </div>
         
+      <DataVisualization />
     </>
   );
 }
