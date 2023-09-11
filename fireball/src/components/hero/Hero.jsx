@@ -88,9 +88,10 @@ export default function Example() {
           </Dialog>
         </header>
 
+        {/* END NAVIGATION*/}
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
-            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            className="absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
             aria-hidden="true"
           >
             <div
@@ -101,7 +102,7 @@ export default function Example() {
               }}
             />
           </div>
-          <div className="mx-auto max-w-md py-32 sm:py-48 lg:py-56">
+          <div className="mx-auto max-w-md pt-8 sm:pt-12 lg:pt-14">
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
               <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                 Coming soon.{' '}
@@ -113,7 +114,7 @@ export default function Example() {
                 Fireball
               </h1>
               <img
-                className="h-screen w-full flex justify-between items-center"
+                className="w-full flex justify-between items-center"
                 src="https://res.cloudinary.com/codelikeagirl29/image/upload/v1692319729/undraw_outer_space_re_u9vd_xrxxbn.svg"
                 alt="image of rocket"
                 data-aos="zoom-in"
@@ -122,7 +123,7 @@ export default function Example() {
                 Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
                 fugiat veniam occaecat fugiat aliqua.
               </p>
-              <div className="mt-8 flex items-center justify-center gap-x-4 h-screen">
+              <div className="mt-8 flex items-center justify-center gap-x-4">
                 <a
                   href="#"
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -149,10 +150,6 @@ export default function Example() {
           </div>
         </div>
       </div>
-
-      
-
-             
     </>
   )
 }

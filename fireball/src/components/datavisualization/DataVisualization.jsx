@@ -27,10 +27,10 @@ export default function DataVisualization() {
   }, [])
 
   return (
-    <div className="w-full h-screen flex items-center align-middle">
+    <div>
       {
         meteorData === null ? <Loading /> :
-          <div className="w-full">
+          <div>
             <Charts meteorData={meteorData} />
           </div>
       }

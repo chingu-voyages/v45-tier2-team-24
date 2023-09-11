@@ -31,7 +31,7 @@ export default function Team() {
       {/* Two background videos, one desktop/one mobile. Both have a ref so that 
       they can be played/paused based on the switch component */}
       <div>
-        <video className={styles.backgroundVideo} ref={videoRef} loop muted>
+        {/* <video className={styles.backgroundVideo} ref={videoRef} loop muted>
           <source src={backgroundVideo} type="video/mp4" />
         </video>
         <video
@@ -41,10 +41,10 @@ export default function Team() {
           muted
         >
           <source src={mobileBackgroundVideo} type="video/mp4" />
-        </video>
+        </video> */}
         <div className={styles.moonWrapper}>
           {/* Switch component and label */}
-          <FormControlLabel
+          {/* <FormControlLabel
             className="text-white px-2"
             control={
               <Switch
@@ -54,7 +54,9 @@ export default function Team() {
               />
             }
             label="Background Video"
-          />
+          /> */}
+
+          <h1>Lorem Ipsum Dolor</h1>
           {/* Map over all of the team data that was imported from teamData file
           and return a TeamMember component for each team member */}
           {data.map((memberData, index) => (

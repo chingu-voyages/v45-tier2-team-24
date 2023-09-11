@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import { useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import "leaflet/dist/leaflet.css";
 import LocationMarker from './LocationMarker';
 import MeteoriteMarker from "./MeteoriteMarker";
@@ -16,15 +16,17 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
 
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
+    <div>
+
       <MapContainer
-        className="w-full h-screen"
+        className="h-[600px] w-full"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}
       >
-       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {validMapData.map((item) => (
           <MeteoriteMarker
@@ -41,6 +43,7 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
         ))}
         <LocationMarker />
       </MapContainer>
+    </div>
   );
 }
 
