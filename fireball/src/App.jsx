@@ -1,21 +1,20 @@
-import { useState, useEffect } from 'react';
-import './App.css'
-import AOS from 'aos';
-import axios from 'axios';
-import './aos.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import AOS from "aos";
+import axios from "axios";
+import "./aos.css";
 // components import
-import Hero from './components/hero/Hero'
-import Map from './components/map/Map'
-import DataTable from './components/table/Table'
-import SliderFilter from './components/slider_filter/slider';
+import Hero from "./components/hero/Hero";
+import Map from "./components/map/Map";
+import DataTable from "./components/table/Table";
+import SliderFilter from "./components/slider_filter/slider";
 import Team from "./components/teamabout/Team";
-import DataVisualization from './components/datavisualization/DataVisualization';
+import DataVisualization from "./components/datavisualization/DataVisualization";
 // helper function
-import { filterRanges } from './utils/helpers/filterBetweenTwoRanges';
-import { filterSelected } from './utils/helpers/filterSelectedData';
+import { filterRanges } from "./utils/helpers/filterBetweenTwoRanges";
+import { filterSelected } from "./utils/helpers/filterSelectedData";
 // imgs
-import meteor from './images/meteor.png'
-
+import meteor from "./images/meteor.png";
 
 const App = () => {
   //state handlers
@@ -28,7 +27,6 @@ const App = () => {
   const [value, setValue] = useState([990, 100000]);
   const [selectedMeteorite, setSelectedMeteorite] = useState(null);
 
-
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -40,16 +38,19 @@ const App = () => {
     AOS.init();
 
     const apiUrl = "https://data.nasa.gov/resource/gh4g-9sfh.json";
-    axios.get(apiUrl)
+    axios
+      .get(apiUrl)
       .then((response) => {
         setData(response.data);
-        const sortedData = response.data.sort((a, b) => new Date(b.year) - new Date(a.year)).slice(0, 3);
+        const sortedData = response.data
+          .sort((a, b) => new Date(b.year) - new Date(a.year))
+          .slice(0, 3);
         setSortedData(sortedData);
       })
       .catch((error) => {
         console.error("There was an error fetching the data: ", error);
       });
-  }, [])
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -58,20 +59,16 @@ const App = () => {
     setFilteredRange(newFilteredData);
   };
 
-  const selectedMeteorObject = sortedData ? filterSelected(selectedMeteorite, data) : null;
+  const selectedMeteorObject = sortedData
+    ? filterSelected(selectedMeteorite, data)
+    : null;
 
   const handleClick = () => {
-    setSelectedMeteorite(null)
-  }
-
-
-
-
-
+    setSelectedMeteorite(null);
+  };
 
   return (
-    <div className='app-wrapper'>
-
+    <div className="app-wrapper">
       {loading ? (
         <div className="app-load-container w-full h-screen flex flex-col items-center justify-center">
           <img src={meteor} />
@@ -82,33 +79,58 @@ const App = () => {
           <div className="hero-wrapper relative" data-aos="flip-left">
             <Hero />
           </div>
-          <div className='relative w-full h-screen z-10'>
-            <Team />
-          </div>
-          <div className='map-wrapper relative flex'>
+          <div className="sky-background">
+            <div className="star"></div>
+            <div className="relative w-full h-screen z-10">
+              <Team />
+            </div>
+            <div className="map-wrapper relative flex">
+              {sortedData ? (
+                <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+                  <SliderFilter handleChange={handleChange} value={value} />
+                  {selectedMeteorObject ? (
+                    <DataTable
+                      key={selectedMeteorObject.id}
+                      data={selectedMeteorObject}
+                      selectedMeteor={selectedMeteorObject}
+                      isOpen={openDropdown}
+                      setIsOpen={setOpenDropdown}
+                    />
+                  ) : (
+                    sortedData.map((item, index) => (
+                      <DataTable
+                        key={item.id || index}
+                        data={item}
+                        isOpen={openDropdown}
+                        setIsOpen={setOpenDropdown}
+                      />
+                    ))
+                  )}
+                  <button
+                    className="text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300"
+                    onClick={handleClick}
+                  >
+                    Show Latest 3 Meteors
+                  </button>
+                </div>
+              ) : (
+                <div className="spinner"></div>
+              )}
+            </div>
+            {data == null ? (
+              <div className="spinner"></div>
+            ) : (
+              <Map
+                data={data}
+                setSelectedMeteorite={setSelectedMeteorite}
+                filteredRange={filteredRange}
+              />
+            )}
 
-
-            {sortedData ?
-              <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-                <SliderFilter handleChange={handleChange} value={value} />
-                {selectedMeteorObject ?
-                  <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                  :
-                  sortedData.map((item, index) => (
-                    <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                  ))
-                }
-                <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
-              </div>
-              : <div className="spinner"></div>}
-          </div>
-          {data == null ? (<div className="spinner"></div>)
-            : (<Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange} />)}
-
-          {/* <div className='datavisualization-wrapper relative'>
+            {/* <div className='datavisualization-wrapper relative'>
             <DataVisualization />
-          </div> */}
-
+            </div> */}
+          </div>
         </>
       )}
       {/* <Team />
@@ -133,6 +155,6 @@ const App = () => {
       <DataVisualization /> */}
     </div>
   );
-}
+};
 
 export default App;
