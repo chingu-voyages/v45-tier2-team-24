@@ -1,23 +1,6 @@
-/* html,
-body {
-  height: 100%;
-} */
-/* Background videos */
-/* .backgroundVideo {
-  position: fixed;
-  z-index: -1;
-  width: 100vw;
-}
-
-.mobileBackgroundVideo {
-  position: fixed;
-  z-index: -1;
-  width: 100vw;
-} */
-
 /* Moon background */
 .moonWrapper {
-  background-image: url('./images/moon5.png');
+  background-image: url("./images/moon5.png");
   background-repeat: no-repeat;
   background-size: calc(140%);
   background-position-x: center;
@@ -32,25 +15,3 @@ body {
   padding-top: 6em;
   font-size: 32px;
 }
-
-/* Media queries changes moon position based on screen size and 
-which background video plays based on screen size */
-/* @media (max-width: 950px) {
-  .moonWrapper {
-    background-position-y: 50vh;
-  }
-}
-@media (max-width: 425px) {
-  .moonWrapper {
-    background-position-y: 67vh;
-  }
-}
-
-@media (max-width: 950px) {
-  .backgroundVideo {
-    display: none;
-  }
-  .mobileBackgroundVideo {
-    display: block;
-  }
-} */
