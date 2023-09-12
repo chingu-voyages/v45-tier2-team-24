@@ -23,6 +23,7 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}
+        worldCopyJump={true}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
