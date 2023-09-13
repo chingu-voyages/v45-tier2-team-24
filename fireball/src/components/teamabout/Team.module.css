@@ -2,9 +2,9 @@
 .moonWrapper {
   background-image: url("./images/moon5.png");
   background-repeat: no-repeat;
-  background-size: calc(140%);
+  background-size: calc(120%);
   background-position-x: center;
-  background-position-y: 50vh;
+  background-position-y: 20vh;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,6 +12,32 @@
 
 .moonWrapper h1 {
   max-width: 300px;
-  padding-top: 6em;
+  padding-top: 1em;
   font-size: 32px;
+}
+
+@media (min-width: 420px) {
+  .moonWrapper {
+    background-size: 100%;
+    background-position-y: 15vh;
+  }
+}
+
+@media (min-width: 580px) {
+  .moonWrapper {
+    background-size: 95%;
+    background-position-y: 10vh;
+  }
+}
+
+@media (min-width: 850px) {
+  .moonWrapper {
+    background-size: 80%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .moonWrapper {
+    background-size: 60%;
+  }
 }
