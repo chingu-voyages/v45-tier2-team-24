@@ -1,13 +1,11 @@
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import { useEffect, useState } from "react"
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import LocationMarker from './LocationMarker';
+import LocationMarker from "./LocationMarker";
 import MeteoriteMarker from "./MeteoriteMarker";
-import "./map.css"
-
+import "./map.css";
 
 export default function Map({ data, filteredRange, setSelectedMeteorite }) {
-
   const validData = data || [];
   const validFilteredRange = filteredRange || [];
 
@@ -17,9 +15,8 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
     <div>
-
       <MapContainer
-        className="h-[600px] w-full"
+        className="h-[50vh] w-full"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}
@@ -47,4 +44,3 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
     </div>
   );
 }
-

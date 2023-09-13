@@ -15,6 +15,8 @@ import { filterRanges } from "./utils/helpers/filterBetweenTwoRanges";
 import { filterSelected } from "./utils/helpers/filterSelectedData";
 // imgs
 import meteor from "./images/meteor.png";
+import { AppBar, Box, Dialog, IconButton, Modal, Toolbar } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const App = () => {
   //state handlers
@@ -26,6 +28,10 @@ const App = () => {
   const [filteredRange, setFilteredRange] = useState(null);
   const [value, setValue] = useState([990, 100000]);
   const [selectedMeteorite, setSelectedMeteorite] = useState(null);
+  //modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     setLoading(true);
@@ -80,56 +86,88 @@ const App = () => {
             <Hero />
           </div>
           <div className="sky-background">
-            <div className="star"></div>
             <div className="relative w-full h-screen z-10">
               <Team />
             </div>
-            <div className="map-wrapper relative flex">
-              {sortedData ? (
-                <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-                  <SliderFilter handleChange={handleChange} value={value} />
-                  {selectedMeteorObject ? (
-                    <DataTable
-                      key={selectedMeteorObject.id}
-                      data={selectedMeteorObject}
-                      selectedMeteor={selectedMeteorObject}
-                      isOpen={openDropdown}
-                      setIsOpen={setOpenDropdown}
-                    />
-                  ) : (
-                    sortedData.map((item, index) => (
-                      <DataTable
-                        key={item.id || index}
-                        data={item}
-                        isOpen={openDropdown}
-                        setIsOpen={setOpenDropdown}
-                      />
-                    ))
-                  )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 justify-around p-4 gap-4">
+              <div className="self-center">
+                <DataVisualization />
+              </div>
+              <div className="grid-rows-2">
+                <div className="flex flex-col items-center">
                   <button
-                    className="text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300"
-                    onClick={handleClick}
+                    onClick={handleOpen}
+                    className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3"
                   >
-                    Show Latest 3 Meteors
+                    See meteorites that have fallen near you!
                   </button>
+                  <img
+                    src="src\images\meteorFacts.png"
+                    className="rounded-md w-full md:w-3/4 lg:w-1/2 xl:w-1/3"
+                  />
                 </div>
-              ) : (
-                <div className="spinner"></div>
-              )}
+              </div>
             </div>
-            {data == null ? (
-              <div className="spinner"></div>
-            ) : (
-              <Map
-                data={data}
-                setSelectedMeteorite={setSelectedMeteorite}
-                filteredRange={filteredRange}
-              />
-            )}
 
-            {/* <div className='datavisualization-wrapper relative'>
-            <DataVisualization />
-            </div> */}
+            <Dialog fullScreen open={open} onClose={handleClose}>
+              <AppBar sx={{ position: "relative" }}>
+                <Toolbar>
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    onClick={handleClose}
+                    aria-label="close"
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Toolbar>
+              </AppBar>
+
+              <Box className="sky-background h-full">
+                {data == null ? (
+                  <div className="spinner"></div>
+                ) : (
+                  <Map
+                    data={data}
+                    setSelectedMeteorite={setSelectedMeteorite}
+                    filteredRange={filteredRange}
+                  />
+                )}
+                {sortedData ? (
+                  <div className="flex justify-center">
+                    <div className="rounded-md p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] ">
+                      <SliderFilter handleChange={handleChange} value={value} />
+                      {selectedMeteorObject ? (
+                        <DataTable
+                          key={selectedMeteorObject.id}
+                          data={selectedMeteorObject}
+                          selectedMeteor={selectedMeteorObject}
+                          isOpen={openDropdown}
+                          setIsOpen={setOpenDropdown}
+                        />
+                      ) : (
+                        sortedData.map((item, index) => (
+                          <DataTable
+                            key={item.id || index}
+                            data={item}
+                            isOpen={openDropdown}
+                            setIsOpen={setOpenDropdown}
+                          />
+                        ))
+                      )}
+                      <button
+                        className="text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300"
+                        onClick={handleClick}
+                      >
+                        Show Latest 3 Meteors
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="spinner"></div>
+                )}
+              </Box>
+            </Dialog>
           </div>
         </>
       )}
