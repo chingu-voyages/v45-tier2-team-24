@@ -19,7 +19,7 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
         className="h-[50vh] w-full"
         center={[51.505, -0.09]}
         zoom={4}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         worldCopyJump={true}
       >
         <TileLayer
