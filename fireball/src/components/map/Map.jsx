@@ -22,7 +22,7 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
         className="h-[100vh] w-full"
         center={[51.505, -0.09]}
         zoom={4}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         worldCopyJump={true}
       >
 
