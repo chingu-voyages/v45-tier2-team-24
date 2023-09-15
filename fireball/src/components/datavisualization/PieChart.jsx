@@ -176,7 +176,7 @@ export default function PieChart({ meteorData }) {
   return (
     <div className=" flex flex-col items-center">
       <Pie data={data} />
-      <span className="">
+      <span>
 
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -196,7 +196,7 @@ export default function PieChart({ meteorData }) {
           onClick={() => {
             setData(filterByRecclass(meteorData))
           }}
-        >RecClass</button>
+        >Classification</button>
       </span>
     </div>
 

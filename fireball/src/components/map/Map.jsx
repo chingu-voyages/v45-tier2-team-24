@@ -1,13 +1,13 @@
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import { useEffect, useState} from "react"
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import CloseIcon from "@mui/icons-material/Close";
+import {IconButton} from "@mui/material";
+import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import LocationMarker from './LocationMarker';
+import LocationMarker from "./LocationMarker";
 import MeteoriteMarker from "./MeteoriteMarker";
-import "./map.css"
-
+import "./map.css";
 
 export default function Map({ data, filteredRange, setSelectedMeteorite }) {
-
   const validData = data || [];
   const validFilteredRange = filteredRange || [];
 
@@ -16,15 +16,19 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
 
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
+    <div>
+
       <MapContainer
-        className="w-full h-screen"
+        className="h-[100vh] w-full"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}
+        worldCopyJump={true}
       >
-       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {validMapData.map((item) => (
           <MeteoriteMarker
@@ -41,6 +45,6 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
         ))}
         <LocationMarker />
       </MapContainer>
+    </div>
   );
 }
-

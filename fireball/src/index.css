@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 @layer components {
-    /* table styles */
-    .tableHeader {
-        @apply border border-black text-center align-middle bg-slate-200;
-    }
+  /* table styles */
+  .tableHeader {
+    @apply border border-black text-center align-middle bg-slate-200;
+  }
 
-    .tableData {
-        @apply border text-center align-middle;
-    }
-    /* end table styles */
+  .tableData {
+    @apply border text-center align-middle;
+  }
+  /* end table styles */
+}
+
+* {
+  padding: 0;
+  margin: 0;
 }

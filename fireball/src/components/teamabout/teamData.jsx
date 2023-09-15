@@ -17,7 +17,7 @@ export default [
     imgSrc: Rachel,
     imgAlt: "Rachel as an astronaut",
     imgClassName:
-      "absolute left-[10%] top-[58vh] z-2 cursor-pointer h-36 sm:h-52",
+      "absolute left-[20%] top-[30vh] z-2 cursor-pointer h-36 sm:h-52",
   },
   {
     name: "Yodae",
@@ -32,7 +32,7 @@ export default [
     imgSrc: Yodae,
     imgAlt: "Yodae as an astronaut",
     imgClassName:
-      "absolute left-[30%] top-[65vh] z-2 cursor-pointer h-36 sm:h-52 ",
+      "absolute left-[30%] top-[55vh] z-2 cursor-pointer h-36 sm:h-52 ",
   },
   {
     name: "CJ",
@@ -47,7 +47,7 @@ export default [
     imgSrc: CJ,
     imgAlt: "CJ as an astronaut",
     imgClassName:
-      "absolute top-[55vh] right-[30%] z-2 cursor-pointer h-36 sm:h-52",
+      "absolute top-[15vh] right-[30%] z-2 cursor-pointer h-36 sm:h-52",
   },
   {
     name: "Carlos Luevano",
@@ -62,6 +62,6 @@ export default [
     imgSrc: Carlos,
     imgAlt: "Carlos as an astronaut",
     imgClassName:
-      "absolute right-[10%] top-[65vh] z-2 cursor-pointer h-36 sm:h-52",
+      "absolute right-[20%] top-[45vh] z-2 cursor-pointer h-36 sm:h-52",
   },
 ];
