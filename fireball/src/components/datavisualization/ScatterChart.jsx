@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -16,7 +16,17 @@ import { Typography } from '@mui/material';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-export default function ScatterChart({ meteorData }) {
+export default function ScatterChart({ meteorData, chartOpen }) {
+
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const chartInstance = chartRef.current;
+    if (chartInstance && chartInstance.chartInstance) {
+      chartInstance.chartInstance.resize();  // Or pass dimensions like .resize(width, height)
+    }
+  }, []);
+
 
   const options = {
     scales: {
@@ -69,10 +79,10 @@ export default function ScatterChart({ meteorData }) {
 
 
   return (
-    <div className='flex flex-col items-center w-16'>
+    <div className='flex flex-col items-center w-full h-full'>
 
 
-      <span className=' flex h-72 items-center'>
+      <span className=' flex  items-center w-[90%] h-full'>
         <Slider
           orientation="vertical"
           value={y}
@@ -83,9 +93,13 @@ export default function ScatterChart({ meteorData }) {
           valueLabelDisplay="auto"
           onChange={(e) => setY(e.target.value)}
           onKeyDown={preventHorizontalKeyboardNavigation}
-          sx={{ height: 240 }}
+          sx={{ height: 140 }}
         />
-        <Scatter redraw={false} options={options} data={data} />
+        <Scatter 
+          ref={chartRef} 
+          redraw={false} 
+          options={options} 
+          data={data}  />
       </span>
 
       <span>
@@ -98,7 +112,7 @@ export default function ScatterChart({ meteorData }) {
           step={x <= 1600 ? 100 : 5}
           onChange={(e) => setX(e.target.value)}
           valueLabelDisplay='auto'
-          sx={{ width: 350 }} />
+          sx={{ width: 250 }} />
         <Typography>First Year Sighted</Typography>
       </span>
     </div >
