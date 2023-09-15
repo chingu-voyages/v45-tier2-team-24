@@ -17,6 +17,7 @@ import { filterSelected } from "./utils/helpers/filterSelectedData";
 import meteor from "./images/meteor.png";
 import { AppBar, Box, Dialog, IconButton, Modal, Toolbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import meteorImage from './images/meteorFacts.png';
 
 const App = () => {
   //state handlers
@@ -35,12 +36,13 @@ const App = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2750);
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000);
+    
+  }, []);
 
   useEffect(() => {
     AOS.init();
@@ -100,7 +102,7 @@ const App = () => {
                     See meteorites that have fallen near you!
                   </button>
                   <img
-                    src="src\images\meteorFacts.png"
+                    src={meteorImage}
                     className="rounded-md desktop:h-[40rem] desktop:w-[50rem] tablet:w-[30rem] tablet:h-[28rem] phone:w-full phone:h-[20rem]"
                   />
               </div>
