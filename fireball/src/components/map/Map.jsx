@@ -1,4 +1,6 @@
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import CloseIcon from "@mui/icons-material/Close";
+import {IconButton} from "@mui/material";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import LocationMarker from "./LocationMarker";
@@ -15,13 +17,15 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
     <div>
+
       <MapContainer
-        className="h-[50vh] w-full"
+        className="h-[100vh] w-full"
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={false}
         worldCopyJump={true}
       >
+
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

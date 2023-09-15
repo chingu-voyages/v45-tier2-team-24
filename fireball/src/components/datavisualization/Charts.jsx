@@ -2,7 +2,7 @@ import { useState } from "react";
 import PieChart from "./PieChart";
 import ScatterChart from "./ScatterChart";
 
-export default function Charts({ meteorData }) {
+export default function Charts({ meteorData, chartOpen }) {
   const [showCharts, setShowCharts] = useState({
     pie: true,
   });
@@ -15,7 +15,7 @@ export default function Charts({ meteorData }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-w-[360px]">
+    <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex">
         <button
           onClick={() => handleShowChart("pie")}
@@ -31,7 +31,7 @@ export default function Charts({ meteorData }) {
         </button>
       </div>
       {showCharts.pie && <PieChart meteorData={meteorData} />}
-      {showCharts.scatter && <ScatterChart meteorData={meteorData} />}
+      {showCharts.scatter && <ScatterChart meteorData={meteorData} chartOpen={chartOpen} />}
     </div>
   );
 }

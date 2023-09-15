@@ -22,6 +22,8 @@ const App = () => {
   //state handlers
   const [loading, setLoading] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [chartOpen, setChartOpen] = useState(false);
+  const [tableOpen, setTableOpen] = useState(false);
   //api meteor data
   const [data, setData] = useState(null);
   const [sortedData, setSortedData] = useState(null);
@@ -33,12 +35,12 @@ const App = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2750);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2750);
+  // }, []);
 
   useEffect(() => {
     AOS.init();
@@ -85,16 +87,12 @@ const App = () => {
           <div className="hero-wrapper relative" data-aos="flip-left">
             <Hero />
           </div>
-          <div className="sky-background">
-            <div className="relative w-full h-screen z-10">
+          <div className=" h-max">
+            <div className="relative w-full h-max z-10 sky-background" id="team">
               <Team />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 justify-around p-4 gap-4">
-              <div className="self-center">
-                <DataVisualization />
-              </div>
-              <div className="grid-rows-2">
-                <div className="flex flex-col items-center">
+            <div className="flex justify-center items-center w-full" id="map">
+                <div className="flex flex-col items-center desktop:w-[60rem] desktop:h-[52rem] desktop:mt-[3rem] tablet:h-[35rem] phone:h-[25rem]">
                   <button
                     onClick={handleOpen}
                     className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3"
@@ -103,94 +101,70 @@ const App = () => {
                   </button>
                   <img
                     src="src\images\meteorFacts.png"
-                    className="rounded-md w-full md:w-3/4 lg:w-1/2 xl:w-1/3"
+                    className="rounded-md desktop:h-[40rem] desktop:w-[50rem] tablet:w-[30rem] tablet:h-[28rem] phone:w-full phone:h-[20rem]"
                   />
-                </div>
               </div>
             </div>
 
-            <Dialog fullScreen open={open} onClose={handleClose}>
-              <AppBar sx={{ position: "relative" }}>
-                <Toolbar>
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    onClick={handleClose}
-                    aria-label="close"
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </Toolbar>
-              </AppBar>
+            <Dialog fullScreen open={open} onClose={handleClose} >
 
-              <Box className="sky-background h-full">
-                {data == null ? (
-                  <div className="spinner"></div>
-                ) : (
-                  <Map
-                    data={data}
-                    setSelectedMeteorite={setSelectedMeteorite}
-                    filteredRange={filteredRange}
-                  />
-                )}
-                {sortedData ? (
-                  <div className="flex justify-center">
-                    <div className="rounded-md p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] ">
-                      <SliderFilter handleChange={handleChange} value={value} />
-                      {selectedMeteorObject ? (
-                        <DataTable
-                          key={selectedMeteorObject.id}
-                          data={selectedMeteorObject}
-                          selectedMeteor={selectedMeteorObject}
-                          isOpen={openDropdown}
-                          setIsOpen={setOpenDropdown}
-                        />
-                      ) : (
-                        sortedData.map((item, index) => (
-                          <DataTable
-                            key={item.id || index}
-                            data={item}
-                            isOpen={openDropdown}
-                            setIsOpen={setOpenDropdown}
-                          />
-                        ))
-                      )}
-                      <button
-                        className="text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300"
-                        onClick={handleClick}
-                      >
-                        Show Latest 3 Meteors
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="spinner"></div>
-                )}
+            <Box>
+
+            <button onClick={() => setChartOpen(!chartOpen)} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
+              {chartOpen ? 
+                <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close Chart</button>
+                : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open Chart</button>}
+            </button>
+            {chartOpen && (
+              <div className="absolute bottom-[2rem] right-[1rem] w-[33rem] h-[26rem] z-10 bg-slate-50 bg-opacity-60 rounded-md phone:w-[90%]">
+                <DataVisualization chartOpen={chartOpen} />
+              </div>
+            )}
+
+              {/* X button */}
+              <div className="absolute top-3 right-3 z-10 bg-white rounded h-[2rem] w-[2rem] flex justify-center items-center pl-[12px]">
+                <IconButton
+                      edge="start"
+                      color="inherit"
+                      onClick={handleClose}
+                      aria-label="close"
+                    >
+                      <CloseIcon />
+                </IconButton>
+              </div>
+
+              {/* map open button */}
+              <button onClick={() => setTableOpen(!tableOpen)} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
+              {tableOpen ? 
+                <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close table</button>
+                : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open table</button>}
+                </button>
+
+              {/* map info table */}
+              {tableOpen && (<>
+              {sortedData? 
+              <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[11.5%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+              <SliderFilter handleChange={handleChange} value={value} />
+                {selectedMeteorObject ? 
+                  <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
+                  :
+                  
+                  sortedData.map((item, index) => (
+                    <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
+                  ))
+                }
+                <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
+                </div>
+              : <p>Loading...</p>}
+              </>)}
+
+                <Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange}/> 
+
               </Box>
             </Dialog>
           </div>
         </>
       )}
-      {/* <Team />
-      <div className='relative'>
-        {sortedData ?
-          <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[15%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-            <SliderFilter handleChange={handleChange} value={value} />
-            {selectedMeteorObject ?
-              <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-              :
-              sortedData.map((item, index) => (
-                <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-              ))
-            }
-            <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
-          </div>
-          : <p>Loading...</p>}
-        {data == null ? (<p>Loading...</p>)
-          : (<Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange} />)}
-      </div>
-
-      <DataVisualization /> */}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Loading = () => {
   )
 }
 
-export default function DataVisualization() {
+export default function DataVisualization({chartOpen}) {
 
   const meteorAPI = 'https://data.nasa.gov/resource/gh4g-9sfh.json'
   const [meteorData, setMeteorData] = useState(null)
@@ -27,11 +27,11 @@ export default function DataVisualization() {
   }, [])
 
   return (
-    <div>
+    <div className="w-full h-full flex justify-center items-center">
       {
         meteorData === null ? <Loading /> :
           <div>
-            <Charts meteorData={meteorData} />
+            <Charts meteorData={meteorData} chartOpen={chartOpen} />
           </div>
       }
     </div>
