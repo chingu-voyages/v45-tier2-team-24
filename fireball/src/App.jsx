@@ -77,6 +77,25 @@ const App = () => {
     setSelectedMeteorite(null);
   };
 
+  const toggleChart = () => {
+    if (!chartOpen && tableOpen) {
+      setChartOpen(true)
+      setTableOpen(false)
+    } else {
+      setChartOpen(!chartOpen);
+    }
+  }
+
+  const toggleTable = () => {
+    if (!tableOpen && chartOpen) {
+      setTableOpen(true)
+      setChartOpen(false)
+    } else {
+      setTableOpen(!tableOpen)
+    }
+  }
+
+
   return (
     <div className="app-wrapper">
       {loading ? (
@@ -110,13 +129,13 @@ const App = () => {
 
             <Dialog
               fullScreen={screen.width < 420 ? true : false}
-              maxWidth={screen.width >= 420 ? 'lg' : false}
+              maxWidth={screen.width >= 420 ? 'xl' : false}
               open={open} onClose={handleClose}
             >
 
               <Box>
 
-                <button onClick={() => setChartOpen(!chartOpen)} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
+                <button onClick={toggleChart} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
                   {chartOpen ?
                     <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close Chart</button>
                     : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open Chart</button>}
@@ -140,7 +159,7 @@ const App = () => {
                 </div>
 
                 {/* map open button */}
-                <button onClick={() => setTableOpen(!tableOpen)} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
+                <button onClick={toggleTable} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
                   {tableOpen ?
                     <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close table</button>
                     : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open table</button>}
