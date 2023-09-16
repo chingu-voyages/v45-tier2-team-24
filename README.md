@@ -20,7 +20,8 @@
 ## About The Project
 
 
-![Product Name Screen Shot][product-screenshot]
+<div align="center"><img src="Hero.png" height="500"></div>
+
 
 
 ### Built With
@@ -44,6 +45,10 @@
 
 - Testing with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
+- Wireframed with [Figma](https://www.figma.com/file/FLlxPnVMk3nqMldskjmbOe/Website-Wireframes-UI-Kit-%7C-BRIX-Templates-(Community)?type=design&node-id=0-1&mode=design&t=ZSQTXr4qjiCtRwJb-0)
+
+<div align="center"><img src="wireframe.png" height="300"></div>  
+
 ### Features
 
 
@@ -55,7 +60,7 @@
 
 - On the Team component a user can hover over or tap on one of the astronaut avatars to learn more about each developer that worked on the project.
 
-![Features Screen Shot][features-screenshot]
+<div align="center"><img src="features.png" height="500"></div>
   
 
 
@@ -63,13 +68,6 @@
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
@@ -85,9 +83,6 @@
    ```js
    npm run dev
    ```
-
-
-
 
 
 <!-- CONTACT -->
