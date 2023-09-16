@@ -17,7 +17,6 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
     <div>
-      {console.log(screen.width)}
       <MapContainer
         className={screen.width < 420 ? 'h-[100vh] w-full' : 'h-[90vh] w-[90vw]'}
         center={[51.505, -0.09]}
