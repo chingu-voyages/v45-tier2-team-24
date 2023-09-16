@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import CloseIcon from "@mui/icons-material/Close";
-import {IconButton} from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import LocationMarker from "./LocationMarker";
@@ -17,9 +17,9 @@ export default function Map({ data, filteredRange, setSelectedMeteorite }) {
   const validMapData = mapData.filter((item) => item.reclat && item.reclong);
   return (
     <div>
-
+      {console.log(screen.width)}
       <MapContainer
-        className="h-[100vh] w-full"
+        className={screen.width < 420 ? 'h-[100vh] w-full' : 'h-[90vh] w-[90vw]'}
         center={[51.505, -0.09]}
         zoom={4}
         scrollWheelZoom={true}

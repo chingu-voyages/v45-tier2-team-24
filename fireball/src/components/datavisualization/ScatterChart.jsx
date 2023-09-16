@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -12,7 +12,6 @@ import { Scatter } from 'react-chartjs-2';
 import Slider from '@mui/material/Slider'
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
-
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -58,8 +57,6 @@ export default function ScatterChart({ meteorData, chartOpen }) {
     return newData
   }
 
-  console.log(meteorSightingsByYear(meteorData))
-
   const data = {
     datasets: [
       {
@@ -95,11 +92,11 @@ export default function ScatterChart({ meteorData, chartOpen }) {
           onKeyDown={preventHorizontalKeyboardNavigation}
           sx={{ height: 140 }}
         />
-        <Scatter 
-          ref={chartRef} 
-          redraw={false} 
-          options={options} 
-          data={data}  />
+        <Scatter
+          ref={chartRef}
+          redraw={false}
+          options={options}
+          data={data} />
       </span>
 
       <span>

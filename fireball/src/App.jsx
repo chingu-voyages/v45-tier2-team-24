@@ -41,7 +41,7 @@ const App = () => {
     setTimeout(() => {
       setLoading(false)
     }, 3000);
-    
+
   }, []);
 
   useEffect(() => {
@@ -94,73 +94,77 @@ const App = () => {
               <Team />
             </div>
             <div className="flex justify-center items-center w-full" id="map">
-                <div className="flex flex-col items-center desktop:w-[60rem] desktop:h-[52rem] desktop:mt-[3rem] tablet:h-[35rem] phone:h-[25rem]">
-                  <button
-                    onClick={handleOpen}
-                    className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3"
-                  >
-                    See meteorites that have fallen near you!
-                  </button>
-                  <img
-                    src={meteorImage}
-                    className="rounded-md desktop:h-[40rem] desktop:w-[50rem] tablet:w-[30rem] tablet:h-[28rem] phone:w-full phone:h-[20rem]"
-                  />
+              <div className="flex flex-col items-center desktop:w-[60rem] desktop:h-[52rem] desktop:mt-[3rem] tablet:h-[35rem] phone:h-[25rem]">
+                <button
+                  onClick={handleOpen}
+                  className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3"
+                >
+                  See meteorites that have fallen near you!
+                </button>
+                <img
+                  src={meteorImage}
+                  className="rounded-md desktop:h-[40rem] desktop:w-[50rem] tablet:w-[30rem] tablet:h-[28rem] phone:w-full phone:h-[20rem]"
+                />
               </div>
             </div>
 
-            <Dialog fullScreen open={open} onClose={handleClose} >
+            <Dialog
+              fullScreen={screen.width < 420 ? true : false}
+              maxWidth={screen.width >= 420 ? 'lg' : false}
+              open={open} onClose={handleClose}
+            >
 
-            <Box>
+              <Box>
 
-            <button onClick={() => setChartOpen(!chartOpen)} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
-              {chartOpen ? 
-                <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close Chart</button>
-                : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open Chart</button>}
-            </button>
-            {chartOpen && (
-              <div className="absolute bottom-[2rem] right-[1rem] w-[33rem] h-[26rem] z-10 bg-slate-50 bg-opacity-60 rounded-md phone:w-[90%]">
-                <DataVisualization chartOpen={chartOpen} />
-              </div>
-            )}
+                <button onClick={() => setChartOpen(!chartOpen)} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
+                  {chartOpen ?
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close Chart</button>
+                    : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open Chart</button>}
+                </button>
+                {chartOpen && (
+                  <div className="absolute bottom-[2rem] right-[1rem] w-[33rem] h-[26rem] z-10 bg-slate-50 bg-opacity-60 rounded-md phone:w-[90%]">
+                    <DataVisualization chartOpen={chartOpen} />
+                  </div>
+                )}
 
-              {/* X button */}
-              <div className="absolute top-3 right-3 z-10 bg-white rounded h-[2rem] w-[2rem] flex justify-center items-center pl-[12px]">
-                <IconButton
-                      edge="start"
-                      color="inherit"
-                      onClick={handleClose}
-                      aria-label="close"
-                    >
-                      <CloseIcon />
-                </IconButton>
-              </div>
+                {/* X button */}
+                <div className="absolute top-3 right-3 z-10 bg-white rounded h-[2rem] w-[2rem] flex justify-center items-center pl-[12px]">
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    onClick={handleClose}
+                    aria-label="close"
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </div>
 
-              {/* map open button */}
-              <button onClick={() => setTableOpen(!tableOpen)} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
-              {tableOpen ? 
-                <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close table</button>
-                : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open table</button>}
+                {/* map open button */}
+                <button onClick={() => setTableOpen(!tableOpen)} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
+                  {tableOpen ?
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close table</button>
+                    : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open table</button>}
                 </button>
 
-              {/* map info table */}
-              {tableOpen && (<>
-              {sortedData? 
-              <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[11.5%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-              <SliderFilter handleChange={handleChange} value={value} />
-                {selectedMeteorObject ? 
-                  <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                  :
-                  
-                  sortedData.map((item, index) => (
-                    <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                  ))
-                }
-                <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
-                </div>
-              : <p>Loading...</p>}
-              </>)}
+                {/* map info table */}
+                {tableOpen && (<>
+                  {sortedData ?
+                    <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[11.5%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+                      <SliderFilter handleChange={handleChange} value={value} />
+                      {selectedMeteorObject ?
+                        <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
+                        :
 
-                <Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange}/> 
+                        sortedData.map((item, index) => (
+                          <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
+                        ))
+                      }
+                      <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
+                    </div>
+                    : <p>Loading...</p>}
+                </>)}
+
+                <Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange} />
 
               </Box>
             </Dialog>
