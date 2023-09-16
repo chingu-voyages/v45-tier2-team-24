@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
+import { icon } from "leaflet"
 import "leaflet/dist/leaflet.css";
+
+
+const defaultIcon = L.icon({
+  iconUrl: "https://img.icons8.com/material-two-tone/96/000000/marker.png",
+  iconSize: [45, 46],
+  iconAnchor: [23, 39]
+});
 
 export default function LocationMarker() {
   const [position, setPosition] = useState(null);
@@ -13,13 +21,12 @@ export default function LocationMarker() {
       const radius = e.accuracy;
       const circle = L.circle(e.latlng, radius);
       circle.addTo(map);
-      //   setBbox(e.bounds.toBBoxString().split(","));
     });
   }, [map]);
 
   return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here.</Popup>
+    <Marker position={position} icon={defaultIcon}>
+      <Popup>You are here</Popup>
     </Marker>
   );
 }
