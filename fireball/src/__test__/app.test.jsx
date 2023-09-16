@@ -1,32 +1,36 @@
 import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
 import App from "../App";
 import Hero from "../components/hero/Hero";
 import Team from "../components/teamabout/Team";
 import ScatterChart from "../components/datavisualization/ScatterChart";
 import PieChart from "../components/datavisualization/PieChart";
 import Map from "../components/map/Map";
-//import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react"; // (or /dom, /vue, ...)
+import DataTable from "../components/table/Table";
 import { describe, expect, test, vi } from "vitest";
+import data from "../components/map/data"
 //utility functions
 import { meteorSightingsByYear } from "../utils/helpers/filterByYear";
 //meteor API data
-const meteorDataRes = await fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
-const meteorData = await meteorDataRes.json()
+let meteorData;
+
+beforeAll(async () => {
+  const meteorDataRes = await fetch('https://data.nasa.gov/resource/gh4g-9sfh.json');
+  meteorData = await meteorDataRes.json();
+});
 
 describe('METEOR_DATA', () => {
   it('should return data', () => {
-    expect(meteorData).to.be.an('array')
-  })
-})
+    expect(meteorData).toBeInstanceOf(Array);
+  });
+});
+
 //app loader container
 it("should show meteorite loading screen", () => {
   render(<App />);
   const loadingScreen = screen.queryByText("/Meteortie Landing.../i");
   expect(loadingScreen).toBeDefined();
 });
-
-//Hero
 
 //Team
 describe("Team Component", () => {
@@ -40,9 +44,6 @@ describe("Team Component", () => {
 });
 //Data visualization
 describe("DATA_VISUALIZATION", async () => {
-
-
-
 
   describe("Scatter Plot", () => {
     it("should render", () => {
@@ -76,4 +77,16 @@ describe("Map Component", () => {
   });
 });
 
-//
+//Table Component
+describe("DataTable Component", () => {
+  it("Render Component", () => {
+    render(<DataTable data={meteorData}/>);
+  });
+
+  it("Show One Button", () => {
+    render(<DataTable data={meteorData}/>);
+    const buttons = screen.getAllByRole('button');
+    expect(buttons.length).toBe(1);
+  })
+  
+});
