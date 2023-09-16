@@ -5,9 +5,9 @@ import "leaflet/dist/leaflet.css";
 
 
 const defaultIcon = L.icon({
-  iconUrl: "https://img.icons8.com/material-two-tone/96/000000/marker.png",
-  iconSize: [45, 46],
-  iconAnchor: [23, 39]
+  iconUrl: "https://img.icons8.com/stickers/100/comet.png",
+  iconSize: [55, 56],
+  iconAnchor: [3, 50]
 });
 
 export default function LocationMarker() {
