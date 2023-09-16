@@ -16,9 +16,14 @@ it("should show meteorite loading screen", () => {
 //Hero
 
 //Team
-it("should render 4 astronaut image elements", () => {
-  render(<Team />);
-  expect(screen.getAllByRole("img")).to.have.lengthOf(4);
+describe("Team Component", () => {
+  it("renders without errors", () => {
+    render(<Team />);
+  });
+  it("renders 4 astronaut image elements", () => {
+    render(<Team />);
+    expect(screen.getAllByRole("img")).to.have.lengthOf(4);
+  });
 });
 //Data visualization
 
