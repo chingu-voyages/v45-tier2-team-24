@@ -17,7 +17,7 @@ import { filterSelected } from "./utils/helpers/filterSelectedData";
 import meteor from "./images/meteor.png";
 import { AppBar, Box, Dialog, IconButton, Modal, Toolbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import meteorImage from './images/meteorFacts.png';
+import meteorImage from "./images/meteorFacts.png";
 
 const App = () => {
   //state handlers
@@ -39,9 +39,8 @@ const App = () => {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 3000);
-
   }, []);
 
   useEffect(() => {
@@ -79,22 +78,21 @@ const App = () => {
 
   const toggleChart = () => {
     if (!chartOpen && tableOpen) {
-      setChartOpen(true)
-      setTableOpen(false)
+      setChartOpen(true);
+      setTableOpen(false);
     } else {
       setChartOpen(!chartOpen);
     }
-  }
+  };
 
   const toggleTable = () => {
     if (!tableOpen && chartOpen) {
-      setTableOpen(true)
-      setChartOpen(false)
+      setTableOpen(true);
+      setChartOpen(false);
     } else {
-      setTableOpen(!tableOpen)
+      setTableOpen(!tableOpen);
     }
-  }
-
+  };
 
   return (
     <div className="app-wrapper">
@@ -109,7 +107,10 @@ const App = () => {
             <Hero />
           </div>
           <div className=" h-max">
-            <div className="relative w-full h-max z-10 sky-background" id="team">
+            <div
+              className="relative w-full h-max z-10 sky-background"
+              id="team"
+            >
               <Team />
             </div>
             <div className="flex justify-center items-center w-full" id="map">
@@ -129,16 +130,24 @@ const App = () => {
 
             <Dialog
               fullScreen={screen.width < 420 ? true : false}
-              maxWidth={screen.width >= 420 ? 'xl' : false}
-              open={open} onClose={handleClose}
+              maxWidth={screen.width >= 420 ? "xl" : false}
+              open={open}
+              onClose={handleClose}
             >
-
               <Box>
-
-                <button onClick={toggleChart} className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]">
-                  {chartOpen ?
-                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close Chart</button>
-                    : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open Chart</button>}
+                <button
+                  onClick={toggleChart}
+                  className="absolute z-50 bottom-[1.5rem]  right-[1.2rem] h-[5rem] w-[5rem] phone:top-[7rem] phone:left-[80%]"
+                >
+                  {chartOpen ? (
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">
+                      Close Chart
+                    </button>
+                  ) : (
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">
+                      Open Chart
+                    </button>
+                  )}
                 </button>
                 {chartOpen && (
                   <div className="absolute bottom-[2rem] right-[1rem] w-[33rem] h-[26rem] z-10 bg-slate-50 bg-opacity-60 rounded-md phone:w-[90%]">
@@ -159,32 +168,68 @@ const App = () => {
                 </div>
 
                 {/* map open button */}
-                <button onClick={toggleTable} className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]">
-                  {tableOpen ?
-                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">Close table</button>
-                    : <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">Open table</button>}
+                <button
+                  onClick={toggleTable}
+                  className="absolute z-50 bottom-[1.5rem]  left-[1.2rem] h-[5rem] w-[5rem] phone:top-[3rem] phone:left-[80%]"
+                >
+                  {tableOpen ? (
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-red-600 hover:bg-orange-400 font-bold text-xl">
+                      Close table
+                    </button>
+                  ) : (
+                    <button className="bg-slate-50 bg-opacity-60 rounded-md text-cyan-600 hover:bg-orange-400 font-bold text-xl">
+                      Open table
+                    </button>
+                  )}
                 </button>
 
                 {/* map info table */}
-                {tableOpen && (<>
-                  {sortedData ?
-                    <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[11.5%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
-                      <SliderFilter handleChange={handleChange} value={value} />
-                      {selectedMeteorObject ?
-                        <DataTable key={selectedMeteorObject.id} data={selectedMeteorObject} selectedMeteor={selectedMeteorObject} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                        :
+                {tableOpen && (
+                  <>
+                    {sortedData ? (
+                      <div className="rounded-md z-10 p-3 bg-slate-50 bg-opacity-60 phone:w-full tablet:w-[17rem] absolute phone:bottom-0 tablet:top-[11.5%] tablet:left-0 desktop:top-[10%] desktop:left-[10%]">
+                        <SliderFilter
+                          handleChange={handleChange}
+                          value={value}
+                        />
+                        {selectedMeteorObject ? (
+                          <DataTable
+                            key={selectedMeteorObject.id}
+                            data={selectedMeteorObject}
+                            selectedMeteor={selectedMeteorObject}
+                            isOpen={openDropdown}
+                            setIsOpen={setOpenDropdown}
+                          />
+                        ) : (
+                          sortedData.map((item, index) => (
+                            <DataTable
+                              key={item.id || index}
+                              data={item}
+                              isOpen={openDropdown}
+                              setIsOpen={setOpenDropdown}
+                            />
+                          ))
+                        )}
+                        <button
+                          className="text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300"
+                          onClick={handleClick}
+                        >
+                          Show Latest 3 Meteors
+                        </button>
+                      </div>
+                    ) : (
+                      <p>Loading...</p>
+                    )}
+                  </>
+                )}
 
-                        sortedData.map((item, index) => (
-                          <DataTable key={item.id || index} data={item} isOpen={openDropdown} setIsOpen={setOpenDropdown} />
-                        ))
-                      }
-                      <button className='text-center w-full rounded-md border-black border-2 hover:bg-stone-900 hover:text-cyan-300' onClick={handleClick}>Show Latest 3 Meteors</button>
-                    </div>
-                    : <p>Loading...</p>}
-                </>)}
-
-                <Map data={data} setSelectedMeteorite={setSelectedMeteorite} filteredRange={filteredRange} />
-
+                <Map
+                  data={data}
+                  setSelectedMeteorite={setSelectedMeteorite}
+                  filteredRange={filteredRange}
+                  setTableOpen={setTableOpen}
+                  setChartOpen={setChartOpen}
+                />
               </Box>
             </Dialog>
           </div>
